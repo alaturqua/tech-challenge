@@ -330,4 +330,3 @@ If you run into issues with Docker, check the following:
 Ensure Docker is running and you have sufficient system resources allocated.
 Verify that all files are correctly mounted into the Docker containers.
 Check the logs for any errors or exceptions.
-# tech-challenge

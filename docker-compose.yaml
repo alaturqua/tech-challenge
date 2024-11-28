@@ -1,0 +1,31 @@
+services:
+  spark-test:
+    build:
+      context: .
+    container_name: spark-test
+    volumes:
+      - ./:/home/jovyan/work
+    entrypoint:
+      ["/usr/local/bin/entrypoint.sh", "pytest", "/home/jovyan/work/code/tests"]
+
+  spark-run:
+    build:
+      context: .
+    container_name: spark-run
+    volumes:
+      - ./:/home/jovyan/work
+    entrypoint:
+      [
+        "/usr/local/bin/entrypoint.sh",
+        "pyspark",
+        "/home/jovyan/work/code/main.py",
+      ]
+  docs:
+    build:
+      context: .
+    container_name: docs
+    volumes:
+      - ./:/home/jovyan/work
+    entrypoint: ["/usr/local/bin/entrypoint.sh", "mkdocs", "serve", "--clean"]
+    ports:
+      - "8000:8000"

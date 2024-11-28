@@ -1,0 +1,53 @@
+site_name: Technical Case Study - SAP Data using Pyspark
+repo_url: https://github.com/alaturqua/technical-case-study
+site_description: A technical case study on SAP Data using Pyspark
+site_author: Isa Inalcik
+
+plugins:
+  - gen-files:
+      scripts:
+        - scripts/gen_ref_nav.py
+  - literate-nav:
+      nav_file: SUMMARY.md
+  - search
+  - section-index
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["."]
+
+theme:
+  name: material
+  font:
+    text: Lato
+  features:
+    - navigation.top
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - toc:
+      permalink: true
+
+dev_addr: "0.0.0.0:8000"
+
+extra:
+  diagrams: diagrams

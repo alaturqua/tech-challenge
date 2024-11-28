@@ -1,0 +1,10 @@
+[tool.pytest.ini_options]
+addopts = "--verbose --html=/home/jovyan/work/logs/report.html --self-contained-html"
+test_paths = "tests"
+asycio_mode = "auto"
+pythonpath = "./code"
+
+[tool.black]
+target-version = ["py311"]
+line-length = 120
+skip-string-normalization = true
