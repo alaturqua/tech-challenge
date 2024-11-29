@@ -330,3 +330,9 @@ If you run into issues with Docker, check the following:
 Ensure Docker is running and you have sufficient system resources allocated.
 Verify that all files are correctly mounted into the Docker containers.
 Check the logs for any errors or exceptions.
+
+### If you encounter the error:
+
+`exec /usr/local/bin/entrypoint.sh: no such file or directory`
+
+You need to change the line endings of the file `scripts/entrypoint.sh` from **CRLF** to **LF**.
