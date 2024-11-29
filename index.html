@@ -1,0 +1,1928 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A technical case study on SAP Data using Pyspark">
+      
+      
+        <meta name="author" content="Isa Inalcik">
+      
+      
+        <link rel="canonical" href="https://alaturqua.github.io/tech-challenge/">
+      
+      
+      
+        <link rel="next" href="reference/code/">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Technical Case Study - SAP Data using Pyspark</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Lato";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#home" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Technical Case Study - SAP Data using Pyspark" class="md-header__button md-logo" aria-label="Technical Case Study - SAP Data using Pyspark" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Technical Case Study - SAP Data using Pyspark
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/alaturqua/tech-challenge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="reference/code/" class="md-tabs__link">
+          
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Technical Case Study - SAP Data using Pyspark" class="md-nav__button md-logo" aria-label="Technical Case Study - SAP Data using Pyspark" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Technical Case Study - SAP Data using Pyspark
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/alaturqua/tech-challenge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Goals
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage-of-sap-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage of SAP Tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagrams-data-flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrams &amp; Data Flows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagrams & Data Flows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-local-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram - Local Material
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-flow-local-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Flow - Local Material
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-process-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram - Process Order
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-flow-process-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Flow - Process Order
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-can-be-improved" class="md-nav__link">
+    <span class="md-ellipsis">
+      What can be improved?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-setup-and-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Setup and Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Setup and Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-quality-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Quality Checks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sensitive Data Handling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-quality-style-and-linting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Quality, Style and Linting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-and-viewing-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating and viewing documentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleaning-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cleaning up
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="reference/code/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    code
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/main/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    main
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="reference/code/modules/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    modules
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/modules/local_material/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    local_material
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/modules/process_order/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    process_order
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/modules/utils/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    utils
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="reference/code/tests/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    tests
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/tests/conftest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    conftest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="reference/code/tests/test_local_material/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    test_local_material
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_1_3_2" id="__nav_2_1_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            test_local_material
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/tests/test_local_material/test_derive_intra_and_inter_primary_key/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test_derive_intra_and_inter_primary_key
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/tests/test_local_material/test_integration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test_integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/tests/test_local_material/test_post_prep_local_material/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test_post_prep_local_material
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/tests/test_local_material/test_prep_general_material_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test_prep_general_material_data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/tests/test_local_material/test_prep_material_valuation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test_prep_material_valuation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/tests/test_local_material/test_prep_plant_and_branches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test_prep_plant_and_branches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/tests/test_local_material/test_prep_plant_data_for_material/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test_prep_plant_data_for_material
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/tests/test_local_material/test_prep_valuation_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test_prep_valuation_data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="reference/code/tests/test_process_order/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    test_process_order
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_1_3_3" id="__nav_2_1_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            test_process_order
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/tests/test_process_order/test_integration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test_integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/tests/test_process_order/test_post_prep_process_order/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test_post_prep_process_order
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/tests/test_process_order/test_prep_sap_general_material_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test_prep_sap_general_material_data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/tests/test_process_order/test_prep_sap_order_header_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test_prep_sap_order_header_data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/tests/test_process_order/test_prep_sap_order_item_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test_prep_sap_order_item_data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/tests/test_process_order/test_prep_sap_order_master_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test_prep_sap_order_master_data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/code/tests/test_utils/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test_utils
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Goals
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage-of-sap-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage of SAP Tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagrams-data-flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrams &amp; Data Flows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagrams & Data Flows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-local-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram - Local Material
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-flow-local-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Flow - Local Material
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-process-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram - Process Order
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-flow-process-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Flow - Process Order
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-can-be-improved" class="md-nav__link">
+    <span class="md-ellipsis">
+      What can be improved?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-setup-and-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Setup and Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Setup and Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-quality-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Quality Checks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sensitive Data Handling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-quality-style-and-linting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Quality, Style and Linting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-and-viewing-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating and viewing documentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleaning-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cleaning up
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="home"><strong>Home</strong><a class="headerlink" href="#home" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>This project simulates an integration process between two SAP systems, focusing on local material data and process order data. The aim is to harmonize and preprocess SAP data to make it ready for further analysis and reporting.</p>
+<h3 id="project-goals">Project Goals<a class="headerlink" href="#project-goals" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Integrate data from SAP System 1 and SAP System 2.</li>
+<li>Harmonize and clean data (removing duplicates, renaming columns, adding primary keys).</li>
+<li>Perform data quality checks and handle sensitive data.</li>
+<li>Save the processed data for downstream analytics.</li>
+</ul>
+<h2 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h2>
+<p>Documentation about SAP Tables was looked up at the following link: <a href="https://www.sapdatasheet.org/">SAP Datasheet</a></p>
+<p>The SAP Datasheet contains detailed information about various SAP tables, including their fields, data types, and usage within SAP systems. This is helpful for understanding how to integrate and transform data from SAP systems.</p>
+<h3 id="usage-of-sap-tables">Usage of SAP Tables<a class="headerlink" href="#usage-of-sap-tables" title="Permanent link">&para;</a></h3>
+<p>The following SAP tables are used in the integration process:</p>
+<p>for Local Material Data:</p>
+<ul>
+<li><code>MARC</code> - Plant Data for Material</li>
+<li><code>MARA</code> - General Material Data</li>
+<li><code>MBEW</code> - Material Valuation</li>
+<li><code>T001</code> - Company Codes</li>
+<li><code>T001W</code> - Plants/Branches</li>
+<li><code>T001K</code> - Valuation Area</li>
+</ul>
+<p>for Process Order Data:</p>
+<ul>
+<li><code>AFKO</code> - Order Header Data</li>
+<li><code>AFPO</code> - Order Item Data</li>
+<li><code>AUFK</code> - Order Master Data</li>
+<li><code>MARA</code> - General Material Data</li>
+</ul>
+<h3 id="diagrams-data-flows">Diagrams &amp; Data Flows<a class="headerlink" href="#diagrams-data-flows" title="Permanent link">&para;</a></h3>
+<p>The <code>diagrams</code> folder contains the following diagrams created by draw.io:</p>
+<ul>
+<li>diagram_local_material.png</li>
+<li>diagram_process_order.png</li>
+</ul>
+<p>Dataflow diagrams are made using <a href="https://mermaid.js.org/">mermaid.js</a> syntax.</p>
+<h4 id="diagram-local-material">Diagram - Local Material<a class="headerlink" href="#diagram-local-material" title="Permanent link">&para;</a></h4>
+<p>The diagram displays how the columns from SAP Tables are joined, renamed and integrated to create the final Local Material dataset.</p>
+<p><img alt="Diagram Local Material" src="../../assets/image/diagram_local_material.png" /></p>
+<h4 id="data-flow-local-material">Data Flow - Local Material<a class="headerlink" href="#data-flow-local-material" title="Permanent link">&para;</a></h4>
+<pre class="mermaid"><code>flowchart LR
+    A1@{ shape: doc, label: "PRE_MARA" } --&gt; id1[(SAP System 1)]
+    B1@{ shape: doc, label: "PRD_MARA" } --&gt; id2[(SAP System 2)]
+    C1@{ shape: doc, label: "PRE_MARC" } --&gt; id1[(SAP System 1)]
+    D1@{ shape: doc, label: "PRD_MARC" } --&gt; id2[(SAP System 2)]
+    E1@{ shape: doc, label: "PRE_MBEW" } --&gt; id1[(SAP System 1)]
+    F1@{ shape: doc, label: "PRD_MBEW" } --&gt; id2[(SAP System 2)]
+    G1@{ shape: doc, label: "PRE_T001" } --&gt; id1[(SAP System 1)]
+    H1@{ shape: doc, label: "PRD_T001" } --&gt; id2[(SAP System 2)]
+    I1@{ shape: doc, label: "PRE_T001W" } --&gt; id1[(SAP System 1)]
+    J1@{ shape: doc, label: "PRD_T001W" } --&gt; id2[(SAP System 2)]
+    K1@{ shape: doc, label: "PRE_T001K" } --&gt; id1[(SAP System 1)]
+    L1@{ shape: doc, label: "PRD_T001K" } --&gt; id2[(SAP System 2)]
+    id1[(SAP System 1)] --&gt;|preprocess| C@{ shape: processes, label: "Local Material 1" }
+    id2[(SAP System 2)] --&gt;|preprocess| D@{ shape: processes, label: "Local Material 2" }
+    C@{ shape: processes, label: "Local Material 1" } --&gt;|union/join| E[Integration]
+    D@{ shape: processes, label: "Local Material 2" } --&gt;|union/join| E[Integration]
+    E[Integration] --&gt;|postprocess| F[Local Material]
+    F[Local Material] --&gt;|rename columns| G[Local Material]</code></pre>
+<p>The process begins with data coming from two separate SAP systems, SAP System 1 and SAP System 2. The data is preprocessed and harmonized to create a unified dataset. The final dataset is then postprocessed and renamed to create the final Local Material. The final dataset is saved as a CSV file in the <code>data/output/local_material</code> folder.</p>
+<h4 id="diagram-process-order">Diagram - Process Order<a class="headerlink" href="#diagram-process-order" title="Permanent link">&para;</a></h4>
+<p>The Diagram displays how data is joined and integrated between different SAP tables to create the final Process Order dataset.</p>
+<p><img alt="Diagram Process Order" src="../../assets/image/diagram_process_order.png" /></p>
+<h4 id="data-flow-process-order">Data Flow - Process Order<a class="headerlink" href="#data-flow-process-order" title="Permanent link">&para;</a></h4>
+<pre class="mermaid"><code>flowchart LR
+    A1@{ shape: doc, label: "PRE_MARA" } --&gt; id1[(SAP System 1)]
+    B1@{ shape: doc, label: "PRD_MARA" } --&gt; id2[(SAP System 2)]
+    C1@{ shape: doc, label: "PRE_AFKO" } --&gt; id1[(SAP System 1)]
+    D1@{ shape: doc, label: "PRD_AFKO" } --&gt; id2[(SAP System 2)]
+    E1@{ shape: doc, label: "PRE_AFPO" } --&gt; id1[(SAP System 1)]
+    F1@{ shape: doc, label: "PRD_AFPO" } --&gt; id2[(SAP System 2)]
+    G1@{ shape: doc, label: "PRE_AUFK" } --&gt; id1[(SAP System 1)]  
+    H1@{ shape: doc, label: "PRD_AUFK" } --&gt; id2[(SAP System 2)]  
+    id1[(SAP System 1)] --&gt;|preprocess| C@{ shape: processes, label: "Process Order 1" }
+    id2[(SAP System 2)] --&gt;|preprocess| D@{ shape: processes, label: "Process Order 2" }
+    C@{ shape: processes, label: "Process Order 1" } --&gt;|union/join| E[Integration]
+    D@{ shape: processes, label: "Process Order 2" } --&gt;|union/join| E[Integration]
+    E[Integration] --&gt;|postprocess| F[Process Order]
+    F[Process Order] --&gt;|rename columns| G[Process Order]</code></pre>
+<p>The process begins with data coming from two separate SAP systems, SAP System 1 and SAP System 2. The data is preprocessed and harmonized to create a unified dataset. The final dataset is then postprocessed and renamed to create the final Process Order. The final dataset is saved as a CSV file in the <code>data/output/process_order</code> folder.</p>
+<h2 id="what-can-be-improved">What can be improved?<a class="headerlink" href="#what-can-be-improved" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Add Metadata Columns</strong>: Add metadata columns to the table to track changes and updates and lineage.<ul>
+<li>E.g. Created Date, Updated Date, Created By, Updated By, Source System, Source Table</li>
+</ul>
+</li>
+<li><strong>Define Schema on Read</strong>: Schema can be defined at read time to avoid inferring schema. Schema parameter is already implemented in the <code>read_csv_file</code> function.</li>
+<li><strong>Data Quality Checks</strong>: More data quality checks can be added to ensure data consistency and accuracy. E.g. checking for null values, data types, etc.</li>
+<li><strong>Performance Optimization</strong>: Performance can be optimized by using partitioning, bucketing, and caching.</li>
+<li><strong>Using broadcast joins</strong>: For smaller tables, broadcast joins can be used to improve performance.</li>
+<li><strong>Spark Configuration</strong>: Spark configuration can be optimized for better performance.</li>
+<li><strong>CI/CD Pipeline</strong>: Implement a CI/CD pipeline for automated code linting, testing and deployment with approval process.</li>
+<li><strong>Save to Database</strong>: Save the final dataframes to a database for further analysis and reporting.E.g. Open Table Formats, Delta Lake, Apache Iceberg.</li>
+<li><strong>Monitoring and Alerting</strong>: Implement monitoring and alerting for the Spark application to track performance and errors. E.g. Prometheus, Grafana, ELK Stack. As well for the data pipeline.</li>
+<li><strong>Processing Database</strong>: Save runtime metadata to a processing database for tracking and monitoring.<ul>
+<li>E.g. Run id, Start Time, End Time, Status, Error Message, Processed Rows, Rejected Rows, Source Table, Target Table</li>
+</ul>
+</li>
+<li><strong>Credentials Management</strong>: Use key vaults or secret management tools to store and manage credentials securely. E.g. AWS Secrets Manager, Azure Key Vault.</li>
+</ul>
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<p>Docker and Docker Compose are chosen as the primary tools for running the code. This makes it easier to run the code in a containerized environment. Otherwise setting up spark and other dependencies can be cumbersome on a local machine.</p>
+<ul>
+<li>Docker -&gt; <a href="https://docs.docker.com/get-docker/">Install Docker</a></li>
+<li>Docker Compose -&gt; <a href="https://docs.docker.com/compose/install/">Install Docker Compose</a></li>
+<li>Docker Image -&gt; jupyter/pyspark-notebook:python-3.11</li>
+<li>Python 3.11</li>
+</ul>
+<h3 id="code-setup-and-structure">Code Setup and Structure<a class="headerlink" href="#code-setup-and-structure" title="Permanent link">&para;</a></h3>
+<p>The code is structured as follows:</p>
+<ul>
+<li><code>code</code> folder contains code related files.<ul>
+<li><code>main.py</code> is the entrypoint for the code.</li>
+<li><code>modules</code> folder contains the main modules.<ul>
+<li><code>local_material.py</code> contains the code for local material.</li>
+<li><code>process_order.py</code> contains the code for process order.</li>
+<li><code>utils.py</code> contains the utility functions.</li>
+</ul>
+</li>
+<li><code>tests</code> folder contains the tests for the modules.<ul>
+<li><code>test_local_material</code> folder contains the tests for local material.</li>
+<li><code>test_process_order</code> folder contains the tests for process order.</li>
+<li><code>test_utils.py</code> contains the tests for the utility functions.</li>
+<li><code>conftest.py</code> contains the fixtures for the tests.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>data</code> folder contains the data.</li>
+<li><code>diagrams</code> folder contains the diagrams.</li>
+<li><code>docs</code> folder contains the documentation.</li>
+<li><code>scripts</code> folder contains the scripts.</li>
+<li><code>requirements.txt</code> contains the dependencies.</li>
+</ul>
+<p>Final dataframes  <strong>local_material</strong> and <strong>process_order</strong> are saved in the <code>data/output</code> folder as <code>csv</code> files.</p>
+<h4 id="data-quality-checks">Data Quality Checks<a class="headerlink" href="#data-quality-checks" title="Permanent link">&para;</a></h4>
+<p>Uniqueness checks are performed on the primary keys of the dataframes using <code>check_columns_unique</code>.
+More checks could be added as functions to check for null values, data types, etc.</p>
+<p>Besides custom checks spark test frameworks can be utilized. Some examples frameworks are <code>Great Expectations</code>, <code>spark-expectations</code> or <code>soda-spark</code>.</p>
+<h4 id="sensitive-data-handling">Sensitive Data Handling<a class="headerlink" href="#sensitive-data-handling" title="Permanent link">&para;</a></h4>
+<p>Masking is performed on the sensitive columns using <code>mask_sensitive_columns</code> function.
+This is done to ensure that sensitive data is not exposed in the final dataframes.
+Should be done as early as possible in the pipeline.</p>
+<h3 id="code-quality-style-and-linting">Code Quality, Style and Linting<a class="headerlink" href="#code-quality-style-and-linting" title="Permanent link">&para;</a></h3>
+<p><code>ruff</code> library is used for linting and code quality checks. You can run it using <code>ruff</code> command.</p>
+<p>It is configured to use Google Style Code and Docstrings.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ruff<span class="w"> </span>check<span class="w"> </span>./code
+</code></pre></div>
+<h3 id="generating-and-viewing-documentation">Generating and viewing documentation<a class="headerlink" href="#generating-and-viewing-documentation" title="Permanent link">&para;</a></h3>
+<p><code>mkdocs</code> library is used to generate documentation. </p>
+<blockquote>
+<p>MkDocs is a fast, simple and downright gorgeous static site generator that's geared towards building project documentation. Documentation source files are written in Markdown, and configured with a single YAML configuration file.</p>
+</blockquote>
+<p>To generate and view the documentation, run the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>docs<span class="w"> </span>--build<span class="w"> </span>--no-log-prefix
+</code></pre></div>
+<p>And visit <a href="http://localhost:8000">http://localhost:8000</a> in your browser.</p>
+<p>To generate a <code>site</code> folder at the root level containing the documentation, which can be published on <strong>GitHub Pages</strong>, following command can be used:</p>
+<p>Note: This is not implemented in docker-compose.yaml yet.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mkdocs<span class="w"> </span>build
+</code></pre></div>
+<h3 id="running-the-tests">Running the tests<a class="headerlink" href="#running-the-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The code is tested using Pytest. You can run the tests using the following command:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>spark-test<span class="w"> </span>--build<span class="w"> </span>--no-log-prefix
+</code></pre></div>
+<p>Test results are generated and exported as HTML to logs folder.</p>
+<h3 id="running-the-code">Running the code<a class="headerlink" href="#running-the-code" title="Permanent link">&para;</a></h3>
+<p>The code is written in Python 3.11. <code>jupyter/pyspark-notebook</code> docker image is being used to run the code. This helps in running the code in a containerized environment. And avoids
+installing dependencies like spark, java, hadoop utils on the local machine.</p>
+<p>The entypoint for the code is <code>main.py</code>.</p>
+<p>You can run the spark application using the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>spark-run<span class="w"> </span>--build<span class="w"> </span>--no-log-prefix
+</code></pre></div>
+<h3 id="cleaning-up">Cleaning up<a class="headerlink" href="#cleaning-up" title="Permanent link">&para;</a></h3>
+<p>To clean up the docker containers, run the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker-compose<span class="w"> </span>down
+</code></pre></div>
+<h2 id="project-tree">Project Tree<a class="headerlink" href="#project-tree" title="Permanent link">&para;</a></h2>
+<p>The project tree is as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>.
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>├──<span class="w"> </span>Dockerfile
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>├──<span class="w"> </span>README.md
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>├──<span class="w"> </span>Technical-Case-Study.pdf
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>├──<span class="w"> </span>code
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>│<span class="w">   </span>├──<span class="w"> </span>main.py
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>│<span class="w">   </span>├──<span class="w"> </span>modules
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>local_material.py
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>process_order.py
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>utils.py
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>│<span class="w">   </span>└──<span class="w"> </span>tests
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>│<span class="w">       </span>├──<span class="w"> </span>__init__.py
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>│<span class="w">       </span>├──<span class="w"> </span>conftest.py
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>│<span class="w">       </span>├──<span class="w"> </span>test_local_material
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>│<span class="w">       </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>│<span class="w">       </span>│<span class="w">   </span>├──<span class="w"> </span>test_derive_intra_and_inter_primary_key.py
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>│<span class="w">       </span>│<span class="w">   </span>├──<span class="w"> </span>test_integration.py
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>│<span class="w">       </span>│<span class="w">   </span>├──<span class="w"> </span>test_post_prep_local_material.py
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>│<span class="w">       </span>│<span class="w">   </span>├──<span class="w"> </span>test_prep_general_material_data.py
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>│<span class="w">       </span>│<span class="w">   </span>├──<span class="w"> </span>test_prep_material_valuation.py
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>│<span class="w">       </span>│<span class="w">   </span>├──<span class="w"> </span>test_prep_plant_and_branches.py
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>│<span class="w">       </span>│<span class="w">   </span>├──<span class="w"> </span>test_prep_plant_data_for_material.py
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>│<span class="w">       </span>│<span class="w">   </span>└──<span class="w"> </span>test_prep_valuation_data.py
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>│<span class="w">       </span>├──<span class="w"> </span>test_process_order
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>│<span class="w">       </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>│<span class="w">       </span>│<span class="w">   </span>├──<span class="w"> </span>test_integration.py
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>│<span class="w">       </span>│<span class="w">   </span>├──<span class="w"> </span>test_post_prep_process_order.py
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>│<span class="w">       </span>│<span class="w">   </span>├──<span class="w"> </span>test_prep_sap_general_material_data.py
+<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>│<span class="w">       </span>│<span class="w">   </span>├──<span class="w"> </span>test_prep_sap_order_header_data.py
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a>│<span class="w">       </span>│<span class="w">   </span>├──<span class="w"> </span>test_prep_sap_order_item_data.py
+<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>│<span class="w">       </span>│<span class="w">   </span>└──<span class="w"> </span>test_prep_sap_order_master_data.py
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a>│<span class="w">       </span>└──<span class="w"> </span>test_utils.py
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>├──<span class="w"> </span>data
+<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>│<span class="w">   </span>├──<span class="w"> </span>output
+<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>local_material
+<a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a>│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>_SUCCESS
+<a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>part-00000-5064d33b-f9c6-437a-8cc3-ffeeaf7edfb4-c000.csv
+<a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>process_order
+<a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>_SUCCESS
+<a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a>│<span class="w">   </span>│<span class="w">       </span>└──<span class="w"> </span>part-00000-384db7a3-a438-4fa6-a7db-be4874b4a3b0-c000.csv
+<a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a>│<span class="w">   </span>├──<span class="w"> </span>system_1
+<a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PRE_AFKO.csv
+<a id="__codelineno-6-45" name="__codelineno-6-45" href="#__codelineno-6-45"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PRE_AFPO.csv
+<a id="__codelineno-6-46" name="__codelineno-6-46" href="#__codelineno-6-46"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PRE_AUFK.csv
+<a id="__codelineno-6-47" name="__codelineno-6-47" href="#__codelineno-6-47"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PRE_MARA.csv
+<a id="__codelineno-6-48" name="__codelineno-6-48" href="#__codelineno-6-48"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PRE_MARC.csv
+<a id="__codelineno-6-49" name="__codelineno-6-49" href="#__codelineno-6-49"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PRE_MBEW.csv
+<a id="__codelineno-6-50" name="__codelineno-6-50" href="#__codelineno-6-50"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PRE_T001.csv
+<a id="__codelineno-6-51" name="__codelineno-6-51" href="#__codelineno-6-51"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PRE_T001K.csv
+<a id="__codelineno-6-52" name="__codelineno-6-52" href="#__codelineno-6-52"></a>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>PRE_T001W.csv
+<a id="__codelineno-6-53" name="__codelineno-6-53" href="#__codelineno-6-53"></a>│<span class="w">   </span>├──<span class="w"> </span>system_2
+<a id="__codelineno-6-54" name="__codelineno-6-54" href="#__codelineno-6-54"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PRD_AFKO.csv
+<a id="__codelineno-6-55" name="__codelineno-6-55" href="#__codelineno-6-55"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PRD_AFPO.csv
+<a id="__codelineno-6-56" name="__codelineno-6-56" href="#__codelineno-6-56"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PRD_AUFK.csv
+<a id="__codelineno-6-57" name="__codelineno-6-57" href="#__codelineno-6-57"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PRD_MARA.csv
+<a id="__codelineno-6-58" name="__codelineno-6-58" href="#__codelineno-6-58"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PRD_MARC.csv
+<a id="__codelineno-6-59" name="__codelineno-6-59" href="#__codelineno-6-59"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PRD_MBEW.csv
+<a id="__codelineno-6-60" name="__codelineno-6-60" href="#__codelineno-6-60"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PRD_T001.csv
+<a id="__codelineno-6-61" name="__codelineno-6-61" href="#__codelineno-6-61"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PRD_T001K.csv
+<a id="__codelineno-6-62" name="__codelineno-6-62" href="#__codelineno-6-62"></a>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>PRD_T001W.csv
+<a id="__codelineno-6-63" name="__codelineno-6-63" href="#__codelineno-6-63"></a>│<span class="w">   </span>└──<span class="w"> </span><span class="nb">test</span>
+<a id="__codelineno-6-64" name="__codelineno-6-64" href="#__codelineno-6-64"></a>│<span class="w">       </span>└──<span class="w"> </span>test_data.csv
+<a id="__codelineno-6-65" name="__codelineno-6-65" href="#__codelineno-6-65"></a>├──<span class="w"> </span>diagrams
+<a id="__codelineno-6-66" name="__codelineno-6-66" href="#__codelineno-6-66"></a>│<span class="w">   </span>├──<span class="w"> </span>diagram_local_material.drawio
+<a id="__codelineno-6-67" name="__codelineno-6-67" href="#__codelineno-6-67"></a>│<span class="w">   </span>├──<span class="w"> </span>diagram_local_material.png
+<a id="__codelineno-6-68" name="__codelineno-6-68" href="#__codelineno-6-68"></a>│<span class="w">   </span>├──<span class="w"> </span>diagram_process_order.drawio
+<a id="__codelineno-6-69" name="__codelineno-6-69" href="#__codelineno-6-69"></a>│<span class="w">   </span>└──<span class="w"> </span>diagram_process_order.png
+<a id="__codelineno-6-70" name="__codelineno-6-70" href="#__codelineno-6-70"></a>├──<span class="w"> </span>docker-compose.yaml
+<a id="__codelineno-6-71" name="__codelineno-6-71" href="#__codelineno-6-71"></a>├──<span class="w"> </span>docs
+<a id="__codelineno-6-72" name="__codelineno-6-72" href="#__codelineno-6-72"></a>│<span class="w">   </span>├──<span class="w"> </span>assets
+<a id="__codelineno-6-73" name="__codelineno-6-73" href="#__codelineno-6-73"></a>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>image
+<a id="__codelineno-6-74" name="__codelineno-6-74" href="#__codelineno-6-74"></a>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>diagram_local_material.png
+<a id="__codelineno-6-75" name="__codelineno-6-75" href="#__codelineno-6-75"></a>│<span class="w">   </span>│<span class="w">       </span>└──<span class="w"> </span>diagram_process_order.png
+<a id="__codelineno-6-76" name="__codelineno-6-76" href="#__codelineno-6-76"></a>│<span class="w">   </span>└──<span class="w"> </span>index.md
+<a id="__codelineno-6-77" name="__codelineno-6-77" href="#__codelineno-6-77"></a>├──<span class="w"> </span>mkdocs.yml
+<a id="__codelineno-6-78" name="__codelineno-6-78" href="#__codelineno-6-78"></a>├──<span class="w"> </span>pyproject.toml
+<a id="__codelineno-6-79" name="__codelineno-6-79" href="#__codelineno-6-79"></a>├──<span class="w"> </span>requirements.txt
+<a id="__codelineno-6-80" name="__codelineno-6-80" href="#__codelineno-6-80"></a>├──<span class="w"> </span>ruff.toml
+<a id="__codelineno-6-81" name="__codelineno-6-81" href="#__codelineno-6-81"></a>└──<span class="w"> </span>scripts
+<a id="__codelineno-6-82" name="__codelineno-6-82" href="#__codelineno-6-82"></a><span class="w">    </span>├──<span class="w"> </span>entrypoint.sh
+<a id="__codelineno-6-83" name="__codelineno-6-83" href="#__codelineno-6-83"></a><span class="w">    </span>└──<span class="w"> </span>gen_ref_nav.py
+</code></pre></div>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<p>If you run into issues with Docker, check the following:</p>
+<p>Ensure Docker is running and you have sufficient system resources allocated.
+Verify that all files are correctly mounted into the Docker containers.
+Check the logs for any errors or exceptions.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.top", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
