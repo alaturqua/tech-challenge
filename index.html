@@ -576,6 +576,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-you-encounter-the-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      If you encounter the error
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1573,6 +1588,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-you-encounter-the-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      If you encounter the error
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1633,7 +1663,7 @@
 <p>Dataflow diagrams are made using <a href="https://mermaid.js.org/">mermaid.js</a> syntax.</p>
 <h4 id="diagram-local-material">Diagram - Local Material<a class="headerlink" href="#diagram-local-material" title="Permanent link">&para;</a></h4>
 <p>The diagram displays how the columns from SAP Tables are joined, renamed and integrated to create the final Local Material dataset.</p>
-<p><img alt="Diagram Local Material" src="../../assets/image/diagram_local_material.png" /></p>
+<p><img alt="Diagram Local Material" src="assets/image/diagram_local_material.png" /></p>
 <h4 id="data-flow-local-material">Data Flow - Local Material<a class="headerlink" href="#data-flow-local-material" title="Permanent link">&para;</a></h4>
 <pre class="mermaid"><code>flowchart LR
     A1@{ shape: doc, label: "PRE_MARA" } --&gt; id1[(SAP System 1)]
@@ -1657,7 +1687,7 @@
 <p>The process begins with data coming from two separate SAP systems, SAP System 1 and SAP System 2. The data is preprocessed and harmonized to create a unified dataset. The final dataset is then postprocessed and renamed to create the final Local Material. The final dataset is saved as a CSV file in the <code>data/output/local_material</code> folder.</p>
 <h4 id="diagram-process-order">Diagram - Process Order<a class="headerlink" href="#diagram-process-order" title="Permanent link">&para;</a></h4>
 <p>The Diagram displays how data is joined and integrated between different SAP tables to create the final Process Order dataset.</p>
-<p><img alt="Diagram Process Order" src="../../assets/image/diagram_process_order.png" /></p>
+<p><img alt="Diagram Process Order" src="assets/image/diagram_process_order.png" /></p>
 <h4 id="data-flow-process-order">Data Flow - Process Order<a class="headerlink" href="#data-flow-process-order" title="Permanent link">&para;</a></h4>
 <pre class="mermaid"><code>flowchart LR
     A1@{ shape: doc, label: "PRE_MARA" } --&gt; id1[(SAP System 1)]
@@ -1866,6 +1896,9 @@ installing dependencies like spark, java, hadoop utils on the local machine.</p>
 <p>Ensure Docker is running and you have sufficient system resources allocated.
 Verify that all files are correctly mounted into the Docker containers.
 Check the logs for any errors or exceptions.</p>
+<h3 id="if-you-encounter-the-error">If you encounter the error<a class="headerlink" href="#if-you-encounter-the-error" title="Permanent link">&para;</a></h3>
+<p><code>exec /usr/local/bin/entrypoint.sh: no such file or directory</code></p>
+<p>You need to change the line endings of the file <code>scripts/entrypoint.sh</code> from <strong>CRLF</strong> to <strong>LF</strong>.</p>
 
 
 
